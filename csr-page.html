@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSR Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --hero-gradient-start: #0087dc;
+        --hero-gradient-end: #b9eb5f;
+        --section-gap: 120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: #000;
+        color: #fff;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.2;
+        min-height: 40px;
+        text-decoration: none;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+        transition: transform 150ms ease, background 150ms ease;
+      }
+
+      .btn--primary {
+        background: #1176d9;
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .btn--primary:hover {
+        background: #0f6ecb;
+        transform: translateY(-1px);
+      }
+
+      .btn--primary:active {
+        transform: translateY(0);
+      }
+
+      .btn--outline {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+      }
+
+      .btn--outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .btn--outline:active {
+        transform: translateY(0);
+      }
+
+      .hero {
+        min-height: 100vh;
+        width: 100%;
+        display: grid;
+        align-items: end;
+        background-image: url("https://filecenter.deltaww.com/about/images/about-202605290508096479.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      .hero__content {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding: clamp(28px, 4.5vw, 56px);
+        padding-bottom: clamp(34px, 5.2vw, 66px);
+        text-align: left;
+      }
+
+      .hero__panel {
+        display: inline-block;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+        position: relative;
+      }
+
+      .hero__panel::before {
+        content: "";
+        position: absolute;
+        inset: -22px -34px -18px -34px;
+        background: radial-gradient(
+          120% 120% at 30% 60%,
+          rgba(0, 72, 118, 0.72) 0%,
+          rgba(0, 72, 118, 0.28) 38%,
+          rgba(0, 72, 118, 0) 72%
+        );
+        filter: blur(18px);
+        opacity: 0.95;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero__title {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero__title-top {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+      }
+
+      .hero__title-bottom {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+        margin-top: 0.08em;
+      }
+
+      .hero__gradient {
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          var(--hero-gradient-end) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+      }
+
+      @media (max-width: 520px) {
+        .hero__content {
+          padding-left: 22px;
+          padding-right: 22px;
+        }
+      }
+
+      .main {
+        background: #fff;
+        color: #111;
+        padding-block: var(--section-gap);
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-gap: 80px;
+        }
+      }
+
+      .container {
+        width: min(1040px, 92vw);
+        max-width: 100%;
+        margin-inline: auto;
+        padding-inline: 0;
+      }
+
+      .csr-values__grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        align-items: center;
+        gap: clamp(26px, 4vw, 56px);
+      }
+
+      .csr-values__media {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+        background: #f4f4f4;
+      }
+
+      .csr-values__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .csr-values__kicker {
+        width: 52px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 50%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 14px;
+      }
+
+      .csr-values__title {
+        margin: 0 0 14px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .csr-values__text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+      }
+
+      @media (max-width: 900px) {
+        .csr-values__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .csr-values__media {
+          order: -1;
+        }
+      }
+
+      .csr-impact__heading {
+        margin: 0 0 20px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .csr-impact__intro {
+        margin: 0 auto clamp(40px, 5vw, 56px);
+        max-width: min(720px, 100%);
+        font-size: 14px;
+        line-height: 1.75;
+        text-align: center;
+        color: #6a6a6a;
+      }
+
+      .csr-impact__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(16px, 2.4vw, 24px);
+      }
+
+      .csr-impact__card {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .csr-impact__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 900px) {
+        .csr-impact__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .csr-commitments__tabs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .csr-commitments__tab {
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: none;
+        font: inherit;
+      }
+
+      .csr-commitments__tab-btn {
+        display: block;
+        width: 100%;
+        padding: clamp(12px, 1.6vw, 16px) clamp(8px, 1.2vw, 12px);
+        border: none;
+        border-radius: 8px 8px 0 0;
+        font-weight: 600;
+        font-size: clamp(13px, 1.4vw, 15px);
+        line-height: 1.2;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        transition: filter 150ms ease, opacity 150ms ease;
+      }
+
+      .csr-commitments__tab-btn:hover {
+        filter: brightness(1.05);
+      }
+
+      .csr-commitments__tab--re100 .csr-commitments__tab-btn {
+        background: #76c859;
+      }
+
+      .csr-commitments__tab--ev100 .csr-commitments__tab-btn {
+        background: #f58220;
+      }
+
+      .csr-commitments__tab--net-zero .csr-commitments__tab-btn {
+        background: #c1272d;
+      }
+
+      .csr-commitments__tab--biodiversity .csr-commitments__tab-btn {
+        background: #5eb3c4;
+      }
+
+      .csr-commitments__tab:not(.is-active) .csr-commitments__tab-btn {
+        opacity: 0.92;
+      }
+
+      .csr-commitments__indicator {
+        height: 4px;
+        width: 100%;
+        background: #76c859;
+        transition: background 200ms ease;
+      }
+
+      .csr-commitments__panels {
+        line-height: 0;
+      }
+
+      .csr-commitments__panel {
+        display: none;
+      }
+
+      .csr-commitments__panel.is-active {
+        display: block;
+      }
+
+      .csr-commitments__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 640px) {
+        .csr-commitments__tabs {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .csr-commitments__tab-btn {
+          border-radius: 6px 6px 0 0;
+          font-size: 13px;
+        }
+      }
+
+      .csr-commitments {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding-inline: 0;
+      }
+
+      .csr-commitments__wrap {
+        width: 100%;
+        max-width: none;
+      }
+
+      .csr-green__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .csr-green__media {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .csr-green__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .csr-team {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding-inline: 0;
+      }
+
+      .csr-team__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+      }
+
+      .csr-voice__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .csr-voice__grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        align-items: center;
+        gap: clamp(26px, 4vw, 56px);
+      }
+
+      .csr-voice__kicker {
+        width: 52px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 50%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 14px;
+      }
+
+      .csr-voice__title {
+        margin: 0 0 14px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .csr-voice__text {
+        margin: 0 0 22px;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+      }
+
+      .csr-voice__actions {
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .csr-voice__media {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+        background: #f4f4f4;
+      }
+
+      .csr-voice__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 900px) {
+        .csr-voice__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .csr-voice__media {
+          order: -1;
+        }
+      }
+
+      .milestones__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .milestones__viewport {
+        overflow: hidden;
+      }
+
+      .milestones__track {
+        display: flex;
+        gap: clamp(18px, 2.6vw, 28px);
+        align-items: stretch;
+        transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+
+      .milestones__slide {
+        flex: 0 0 calc((100% - clamp(18px, 2.6vw, 28px)) / 2);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+        line-height: 0;
+      }
+
+      .milestones__img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .milestones__controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(14px, 2vw, 20px);
+        margin-top: clamp(24px, 3vw, 32px);
+      }
+
+      .milestones__arrow {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: #d6ebfa;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: background 150ms ease;
+      }
+
+      .milestones__arrow:hover {
+        background: #c4e2f8;
+      }
+
+      .milestones__arrow--prev::before,
+      .milestones__arrow--next::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-color: #1176d9;
+        border-style: solid;
+      }
+
+      .milestones__arrow--prev::before {
+        border-width: 2px 0 0 2px;
+        transform: rotate(-45deg);
+        margin-left: 3px;
+      }
+
+      .milestones__arrow--next::before {
+        border-width: 2px 2px 0 0;
+        transform: rotate(45deg);
+        margin-right: 3px;
+      }
+
+      .milestones__dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .milestones__dot {
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(17, 118, 217, 0.28);
+        cursor: pointer;
+      }
+
+      .milestones__dot.is-active {
+        background: #1176d9;
+      }
+
+      @media (max-width: 768px) {
+        .milestones__slide {
+          flex: 0 0 100%;
+        }
+      }
+
+      .join {
+        padding: 0;
+      }
+
+      .join__banner {
+        position: relative;
+        width: 100%;
+        border: 1px solid rgba(200, 220, 240, 0.65);
+        border-radius: 2px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .join__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .join__content {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: normal;
+        padding: clamp(24px, 4.2vw, 44px) clamp(28px, 4.5vw, 52px);
+        max-width: 36rem;
+      }
+
+      .join__title {
+        margin: 0 0 10px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        color: #fff;
+      }
+
+      .join__text {
+        margin: 0;
+        font-size: clamp(14px, 1.4vw, 16px);
+        font-weight: 400;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .join__actions {
+        margin-top: 22px;
+      }
+
+      @media (max-width: 640px) {
+        .join__content {
+          max-width: none;
+          padding: 28px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" aria-label="Together We Make Meaningful Impact">
+      <div class="hero__content">
+        <div class="hero__panel">
+          <h1 class="hero__title">
+            <span class="hero__title-top">Together We Make</span>
+            <span class="hero__title-bottom"
+              ><span class="hero__gradient">Meaningful Impact</span></span
+            >
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <main class="main" aria-label="CSR content">
+      <section class="csr-values" aria-label="Living Our Values">
+        <div class="container">
+          <div class="csr-values__grid">
+            <div class="csr-values__media">
+              <img
+                class="csr-values__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290510588527.png"
+                alt="Delta employees volunteering on a community woodworking project"
+              />
+            </div>
+
+            <div class="csr-values__copy">
+              <div class="csr-values__kicker" aria-hidden="true"></div>
+              <h2 class="csr-values__title">Living Our Values</h2>
+              <p class="csr-values__text">
+                At Delta, innovation starts with our people guided by a commitment to
+                sustainability and energy efficiency, we create technologies that drive a
+                greener world while turning ideas into real action through community
+                engagement and environmental initiatives.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="csr-impact" aria-label="Connecting Impact Around the World">
+        <div class="container">
+          <h2 class="csr-impact__heading">Connecting Impact Around the World</h2>
+          <p class="csr-impact__intro">
+            At Delta, we believe that every small action counts from everyday employee
+            efforts to company wide initiatives. Together, these moments create meaningful
+            progress on our path to a more sustainable world.
+          </p>
+
+          <div class="csr-impact__grid">
+            <article class="csr-impact__card">
+              <img
+                class="csr-impact__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290513504757.png"
+                alt="Delta EMEA Advances Reforestation Goals with Tree Planting"
+              />
+            </article>
+
+            <article class="csr-impact__card">
+              <img
+                class="csr-impact__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290514157793.png"
+                alt="Delta's Coral Reef Conservation Initiative: Continuing Forward in 2024"
+              />
+            </article>
+
+            <article class="csr-impact__card">
+              <img
+                class="csr-impact__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290514341978.png"
+                alt="Delta Helmond Colleagues Join Forces for World Cleanup Day in Eindhoven"
+              />
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="csr-commitments"
+        aria-label="Climate commitments"
+        data-csr-tabs
+      >
+        <div class="container">
+          <ul class="csr-commitments__tabs" role="tablist">
+            <li
+              class="csr-commitments__tab csr-commitments__tab--re100 is-active"
+              role="presentation"
+            >
+              <button
+                class="csr-commitments__tab-btn"
+                type="button"
+                role="tab"
+                id="csr-tab-re100"
+                aria-selected="true"
+                aria-controls="csr-panel-re100"
+                data-csr-tab="0"
+                data-csr-color="#76c859"
+              >
+                RE100
+              </button>
+            </li>
+            <li class="csr-commitments__tab csr-commitments__tab--ev100" role="presentation">
+              <button
+                class="csr-commitments__tab-btn"
+                type="button"
+                role="tab"
+                id="csr-tab-ev100"
+                aria-selected="false"
+                aria-controls="csr-panel-ev100"
+                data-csr-tab="1"
+                data-csr-color="#f58220"
+              >
+                EV100
+              </button>
+            </li>
+            <li class="csr-commitments__tab csr-commitments__tab--net-zero" role="presentation">
+              <button
+                class="csr-commitments__tab-btn"
+                type="button"
+                role="tab"
+                id="csr-tab-net-zero"
+                aria-selected="false"
+                aria-controls="csr-panel-net-zero"
+                data-csr-tab="2"
+                data-csr-color="#c1272d"
+              >
+                Net Zero
+              </button>
+            </li>
+            <li
+              class="csr-commitments__tab csr-commitments__tab--biodiversity"
+              role="presentation"
+            >
+              <button
+                class="csr-commitments__tab-btn"
+                type="button"
+                role="tab"
+                id="csr-tab-biodiversity"
+                aria-selected="false"
+                aria-controls="csr-panel-biodiversity"
+                data-csr-tab="3"
+                data-csr-color="#5eb3c4"
+              >
+                Biodiversity
+              </button>
+            </li>
+          </ul>
+
+          <div class="csr-commitments__indicator" data-csr-indicator aria-hidden="true"></div>
+
+          <div class="csr-commitments__panels">
+            <div
+              class="csr-commitments__panel is-active"
+              role="tabpanel"
+              id="csr-panel-re100"
+              aria-labelledby="csr-tab-re100"
+            >
+              <img
+                class="csr-commitments__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290529275316.png"
+                alt="Commitment to RE100"
+              />
+            </div>
+
+            <div
+              class="csr-commitments__panel"
+              role="tabpanel"
+              id="csr-panel-ev100"
+              aria-labelledby="csr-tab-ev100"
+              hidden
+            >
+              <img
+                class="csr-commitments__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290535038252.png"
+                alt="Commitment to EV100"
+              />
+            </div>
+
+            <div
+              class="csr-commitments__panel"
+              role="tabpanel"
+              id="csr-panel-net-zero"
+              aria-labelledby="csr-tab-net-zero"
+              hidden
+            >
+              <img
+                class="csr-commitments__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290535394362.png"
+                alt="Commitment to Carbon Neutrality"
+              />
+            </div>
+
+            <div
+              class="csr-commitments__panel"
+              role="tabpanel"
+              id="csr-panel-biodiversity"
+              aria-labelledby="csr-tab-biodiversity"
+              hidden
+            >
+              <img
+                class="csr-commitments__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290536092834.png"
+                alt="Commitment to Biodiversity"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="csr-green" aria-label="Designed for People and Planet">
+        <div class="container">
+          <h2 class="csr-green__heading">Designed for People and Planet</h2>
+          <div class="csr-green__media">
+            <img
+              class="csr-green__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605290542243308.png"
+              alt="35 Green Buildings Created Worldwide by Delta's Smart Green Solutions"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="csr-team" aria-label="Delta team with terrariums">
+        <img
+          class="csr-team__image"
+          src="https://filecenter.deltaww.com/about/images/about-202605290545017108.png"
+          alt="Delta team members holding terrarium jars at a sustainability event"
+        />
+      </section>
+
+      <section class="csr-voice" aria-label="Empowering Sustainable Change at Delta">
+        <div class="container">
+          <h2 class="csr-voice__heading">Empowering Sustainable Change at Delta</h2>
+
+          <div class="csr-voice__grid">
+            <div class="csr-voice__copy">
+              <div class="csr-voice__kicker" aria-hidden="true"></div>
+              <h3 class="csr-voice__title">Green Voice</h3>
+              <p class="csr-voice__text">
+                See how our teams are bringing sustainability to life one action, one
+                department, one story at a time. Through real voices and everyday efforts,
+                we're turning commitment into impact. Be inspired to make a difference, no
+                matter your role.
+              </p>
+              <div class="csr-voice__actions">
+                <a class="btn btn--primary" href="#" role="button">Learn More</a>
+              </div>
+            </div>
+
+            <div class="csr-voice__media">
+              <img
+                class="csr-voice__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290547116278.png"
+                alt="Green Voice Video"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="milestones" aria-label="Milestones of Impact">
+        <div class="container">
+          <h2 class="milestones__heading">Milestones of Impact</h2>
+
+          <div class="milestones__carousel" data-carousel="milestones">
+            <div class="milestones__viewport">
+              <div class="milestones__track" data-milestones-track>
+                <article class="milestones__slide" data-milestones-slide>
+                  <img
+                    class="milestones__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290552443220.png"
+                    alt="Dow Jones Sustainability Indices"
+                  />
+                </article>
+                <article class="milestones__slide" data-milestones-slide>
+                  <img
+                    class="milestones__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290553019375.png"
+                    alt="CDP Carbon Disclosure Project"
+                  />
+                </article>
+                <article class="milestones__slide" data-milestones-slide>
+                  <img
+                    class="milestones__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290553184758.png"
+                    alt="RobecoSAM Sustainability Yearbook"
+                  />
+                </article>
+                <article class="milestones__slide" data-milestones-slide>
+                  <img
+                    class="milestones__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290553371748.png"
+                    alt="Top 100 Global Innovators"
+                  />
+                </article>
+              </div>
+            </div>
+
+            <div class="milestones__controls">
+              <button
+                class="milestones__arrow milestones__arrow--prev"
+                type="button"
+                aria-label="Previous"
+                data-milestones-prev
+              ></button>
+
+              <div class="milestones__dots" role="tablist" aria-label="Carousel pagination">
+                <button
+                  class="milestones__dot is-active"
+                  type="button"
+                  aria-label="Go to slide 1"
+                  data-milestones-dot
+                ></button>
+                <button
+                  class="milestones__dot"
+                  type="button"
+                  aria-label="Go to slide 2"
+                  data-milestones-dot
+                ></button>
+                <button
+                  class="milestones__dot"
+                  type="button"
+                  aria-label="Go to slide 3"
+                  data-milestones-dot
+                ></button>
+              </div>
+
+              <button
+                class="milestones__arrow milestones__arrow--next"
+                type="button"
+                aria-label="Next"
+                data-milestones-next
+              ></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="join" aria-label="Join Delta Today">
+        <div class="container">
+          <div class="join__banner">
+            <img
+              class="join__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605282322271103.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="join__content">
+              <h2 class="join__title">Join Delta Today</h2>
+              <p class="join__text">
+                Together, we power a smarter and greener tomorrow.
+              </p>
+              <div class="join__actions">
+                <a class="btn btn--outline" href="#" role="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const root = document.querySelector("[data-csr-tabs]");
+        if (!root) return;
+
+        const tabBtns = Array.from(root.querySelectorAll("[data-csr-tab]"));
+        const tabItems = Array.from(root.querySelectorAll(".csr-commitments__tab"));
+        const panels = Array.from(root.querySelectorAll(".csr-commitments__panel"));
+        const indicator = root.querySelector("[data-csr-indicator]");
+
+        function activate(index) {
+          tabBtns.forEach((btn, i) => {
+            const selected = i === index;
+            btn.setAttribute("aria-selected", selected ? "true" : "false");
+            tabItems[i]?.classList.toggle("is-active", selected);
+          });
+
+          panels.forEach((panel, i) => {
+            const active = i === index;
+            panel.classList.toggle("is-active", active);
+            panel.hidden = !active;
+          });
+
+          const color = tabBtns[index]?.dataset.csrColor;
+          if (indicator && color) indicator.style.background = color;
+        }
+
+        tabBtns.forEach((btn, index) => {
+          btn.addEventListener("click", () => activate(index));
+        });
+      })();
+
+      (() => {
+        const root = document.querySelector('[data-carousel="milestones"]');
+        if (!root) return;
+
+        const track = root.querySelector("[data-milestones-track]");
+        const slides = Array.from(root.querySelectorAll("[data-milestones-slide]"));
+        const prevBtn = root.querySelector("[data-milestones-prev]");
+        const nextBtn = root.querySelector("[data-milestones-next]");
+        const dots = Array.from(root.querySelectorAll("[data-milestones-dot]"));
+
+        let index = 0;
+
+        function slidesPerView() {
+          return window.innerWidth <= 768 ? 1 : 2;
+        }
+
+        function maxIndex() {
+          return Math.max(0, slides.length - slidesPerView());
+        }
+
+        function update() {
+          index = Math.min(Math.max(0, index), maxIndex());
+
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("is-active", i === index);
+          });
+
+          const gap = parseFloat(getComputedStyle(track).gap || "0");
+          const slideW = slides[0]?.getBoundingClientRect().width || 0;
+          track.style.transform = `translateX(${-(slideW + gap) * index}px)`;
+        }
+
+        nextBtn?.addEventListener("click", () => {
+          index = index >= maxIndex() ? 0 : index + 1;
+          update();
+        });
+
+        prevBtn?.addEventListener("click", () => {
+          index = index <= 0 ? maxIndex() : index - 1;
+          update();
+        });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => {
+            index = i;
+            update();
+          });
+        });
+
+        window.addEventListener("resize", update);
+        update();
+      })();
+    </script>
+  </body>
+</html>

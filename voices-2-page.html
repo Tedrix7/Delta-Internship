@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voices 2 Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --hero-gradient-start: #00adef;
+        --hero-gradient-end: #8cc63f;
+        --section-gap: 120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: #fff;
+        color: #111;
+      }
+
+      .main {
+        background: #fff;
+        color: #111;
+        padding-block: clamp(48px, 8vw, 88px);
+      }
+
+      .container {
+        width: min(1040px, 92vw);
+        max-width: 100%;
+        margin-inline: auto;
+        padding-inline: 0;
+      }
+
+      .gradient-tag {
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.2;
+        color: #fff;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #3dd4d0 48%,
+          var(--hero-gradient-end) 100%
+        );
+      }
+
+      .voice-article__header {
+        text-align: center;
+        margin-bottom: clamp(28px, 4vw, 40px);
+      }
+
+      .voice-article__tag {
+        margin-bottom: clamp(18px, 2.5vw, 24px);
+      }
+
+      .voice-article__title {
+        margin: 0;
+        font-weight: 700;
+        font-size: clamp(28px, 3.2vw, 40px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #2a2a2a;
+      }
+
+      .voice-article__figure {
+        margin: 0 0 clamp(32px, 4.5vw, 48px);
+        line-height: 0;
+      }
+
+      .voice-article__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      }
+
+      .voice-article__body {
+        max-width: 100%;
+      }
+
+      .voice-article__body p {
+        margin: 0 0 1.35em;
+        font-size: clamp(15px, 1.45vw, 17px);
+        font-weight: 400;
+        line-height: 1.75;
+        color: #3a3a3a;
+        text-align: left;
+      }
+
+      .voice-article__body p:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-gap: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main" aria-label="Voices 2 content">
+      <article class="voice-article" aria-label="Journey of Growth Ahead">
+        <div class="container">
+          <header class="voice-article__header">
+            <div class="voice-article__tag">
+              <span class="gradient-tag">One Day at Delta</span>
+            </div>
+            <h1 class="voice-article__title">Journey of Growth Ahead</h1>
+          </header>
+
+          <figure class="voice-article__figure">
+            <img
+              class="voice-article__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605290633559399.png"
+              alt="Delta employee beside an electric vehicle at a charging station"
+            />
+          </figure>
+
+          <div class="voice-article__body">
+            <p>
+              My journey to Delta has been a path of growth, learning, and new
+              opportunities. Along the way, I embraced challenges, built new skills,
+              and found a place where innovation and teamwork truly thrive.
+            </p>
+            <p>
+              Each new project introduced me to colleagues from different backgrounds,
+              each bringing unique perspectives that helped me see challenges in a new
+              light. I quickly learned that at Delta, you're never navigating your
+              journey alone, there's always someone ready to support, guide, or
+              brainstorm with you.
+            </p>
+            <p>
+              As I grew more confident in my role, I was encouraged to explore new
+              ideas, take initiative, and push beyond what I thought I could do. This
+              sense of empowerment transformed the way I approached my work. I began
+              to see every task, big or small, as a chance to contribute to something
+              meaningful, something that moves our future forward. What I appreciate
+              most is how Delta invests in its people. Whether through mentorship,
+              learning programs, or simply the trust placed in me to lead, I've felt
+              continuously encouraged to step outside my comfort zone. And each time I
+              did, I discovered new strengths within myself. Today, I look back with
+              gratitude at how far I've come and with excitement for everything still
+              ahead. At Delta, growth isn't just something we talk about. It's
+              something we live, together.
+            </p>
+          </div>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

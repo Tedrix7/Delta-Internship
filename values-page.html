@@ -1,0 +1,2138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Values Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --hero-gradient-start: #0087dc;
+        --hero-gradient-end: #b9eb5f;
+        --section-gap: 120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: #000;
+        color: #fff;
+      }
+
+      .hero {
+        min-height: 100vh;
+        width: 100%;
+        display: grid;
+        align-items: end;
+        background-image: url("https://filecenter.deltaww.com/about/images/about-202605282335560463.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      .hero__content {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding: clamp(28px, 4.5vw, 56px);
+        padding-bottom: clamp(34px, 5.2vw, 66px);
+        text-align: left;
+      }
+
+      .hero__panel {
+        display: inline-block;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+        position: relative;
+      }
+
+      .hero__panel::before {
+        content: "";
+        position: absolute;
+        inset: -22px -34px -18px -34px;
+        background: radial-gradient(
+          120% 120% at 30% 60%,
+          rgba(0, 72, 118, 0.72) 0%,
+          rgba(0, 72, 118, 0.28) 38%,
+          rgba(0, 72, 118, 0) 72%
+        );
+        filter: blur(18px);
+        opacity: 0.95;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero__title {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero__title-top {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+      }
+
+      .hero__title-bottom {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+        margin-top: 0.08em;
+      }
+
+      .hero__gradient {
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          var(--hero-gradient-end) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+      }
+
+      @media (max-width: 520px) {
+        .hero__content {
+          padding-left: 22px;
+          padding-right: 22px;
+        }
+      }
+
+      .main {
+        background: #fff;
+        color: #111;
+        padding-block: var(--section-gap);
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-gap: 80px;
+        }
+      }
+
+      .container {
+        width: min(1040px, 92vw);
+        max-width: 100%;
+        margin-inline: auto;
+        padding-inline: 0;
+      }
+
+      .values-intro__title {
+        margin: 0 0 20px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .values-intro__text {
+        margin: 0 0 48px;
+        width: 100%;
+        max-width: none;
+        font-size: 14px;
+        line-height: 1.75;
+        text-align: center;
+        color: #6a6a6a;
+      }
+
+      .values-carousel {
+        position: relative;
+      }
+
+      .values-carousel__viewport {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .values-carousel__track {
+        display: flex;
+        gap: clamp(16px, 2.4vw, 28px);
+        align-items: stretch;
+        transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+
+      .values-carousel__slide {
+        flex: 0 0 calc((100% - (2 * clamp(16px, 2.4vw, 28px))) / 3);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f4f4f4;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .values-carousel__img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .values-carousel__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+
+      .values-carousel__arrow--prev {
+        left: -6px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 200ms ease, visibility 200ms ease;
+      }
+
+      .values-carousel__arrow--prev.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .values-carousel__arrow--prev::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid #111;
+        border-top: 2px solid #111;
+        transform: rotate(-45deg);
+        margin-left: 2px;
+      }
+
+      .values-carousel__arrow--next {
+        right: -6px;
+      }
+
+      .values-carousel__arrow--next::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #111;
+        border-bottom: 2px solid #111;
+        transform: rotate(-45deg);
+        margin-left: -2px;
+      }
+
+      .values-carousel__dots {
+        margin-top: 22px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .values-carousel__dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: rgba(17, 17, 17, 0.18);
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .values-carousel__dot.is-active {
+        background: #1176d9;
+      }
+
+      .values-carousel__dot[hidden] {
+        display: none;
+      }
+
+      @media (max-width: 980px) {
+        .values-carousel__slide {
+          flex-basis: calc((100% - clamp(16px, 2.4vw, 28px)) / 2);
+        }
+
+        .values-carousel__arrow--prev {
+          left: 4px;
+        }
+
+        .values-carousel__arrow--next {
+          right: 4px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .values-intro__text {
+          margin-bottom: 36px;
+        }
+
+        .values-carousel__slide {
+          flex-basis: 100%;
+        }
+
+        .values-carousel__arrow--prev {
+          left: 8px;
+        }
+
+        .values-carousel__arrow--next {
+          right: 8px;
+        }
+      }
+
+      .values-integrity,
+      .values-innovation,
+      .values-collaboration,
+      .values-inclusion,
+      .values-empowerment {
+        width: 100%;
+      }
+
+      .values-integrity__banner,
+      .values-innovation__banner,
+      .values-collaboration__banner,
+      .values-inclusion__banner,
+      .values-empowerment__banner {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1024 / 484;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .values-integrity__image,
+      .values-innovation__image,
+      .values-collaboration__image,
+      .values-inclusion__image,
+      .values-empowerment__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .values-integrity__banner::before,
+      .values-innovation__banner::before,
+      .values-collaboration__banner::before,
+      .values-inclusion__banner::before,
+      .values-empowerment__banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.42) 0%,
+          rgba(0, 0, 0, 0.18) 42%,
+          rgba(0, 0, 0, 0) 68%
+        );
+        pointer-events: none;
+      }
+
+      .values-empowerment__banner::before {
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          #000 32%,
+          #000 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          #000 32%,
+          #000 100%
+        );
+      }
+
+      .values-integrity__content,
+      .values-innovation__content,
+      .values-collaboration__content,
+      .values-inclusion__content,
+      .values-empowerment__content {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: flex-end;
+        line-height: normal;
+        padding-bottom: clamp(28px, 4.5vw, 52px);
+      }
+
+      .values-integrity__content .container,
+      .values-innovation__content .container,
+      .values-collaboration__content .container,
+      .values-inclusion__content .container,
+      .values-empowerment__content .container {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+      }
+
+      .values-integrity__copy,
+      .values-innovation__copy,
+      .values-collaboration__copy,
+      .values-inclusion__copy,
+      .values-empowerment__copy {
+        position: relative;
+        display: inline-block;
+        max-width: min(400px, 36%);
+      }
+
+      .values-integrity__copy::before,
+      .values-innovation__copy::before,
+      .values-collaboration__copy::before,
+      .values-inclusion__copy::before,
+      .values-empowerment__copy::before {
+        content: "";
+        position: absolute;
+        inset: -22px -34px -18px -34px;
+        background: radial-gradient(
+          120% 120% at 30% 60%,
+          rgba(0, 72, 118, 0.72) 0%,
+          rgba(0, 72, 118, 0.28) 38%,
+          rgba(0, 72, 118, 0) 72%
+        );
+        filter: blur(18px);
+        opacity: 0.95;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .values-empowerment__image {
+        object-position: center 22%;
+      }
+
+      .values-integrity__title,
+      .values-innovation__title,
+      .values-collaboration__title,
+      .values-inclusion__title,
+      .values-empowerment__title {
+        position: relative;
+        z-index: 1;
+        margin: 0 0 14px;
+        font-weight: 700;
+        font-size: clamp(28px, 3.2vw, 40px);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        color: #fff;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      .values-integrity__text,
+      .values-innovation__text,
+      .values-collaboration__text,
+      .values-inclusion__text,
+      .values-empowerment__text {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #fff;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      @media (max-width: 768px) {
+        .values-integrity__copy,
+        .values-innovation__copy,
+        .values-collaboration__copy,
+        .values-inclusion__copy,
+        .values-empowerment__copy {
+          max-width: min(400px, 88%);
+        }
+      }
+
+      .quality {
+        padding: 0;
+      }
+
+      .quality__viewport {
+        overflow: hidden;
+      }
+
+      .quality__track {
+        display: flex;
+        transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+
+      .quality__slide {
+        flex: 0 0 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(24px, 4vw, 48px);
+        min-width: 0;
+      }
+
+      .quality__media {
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f4f4f4;
+      }
+
+      .quality__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .quality__side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        min-height: 100%;
+        min-width: 0;
+        padding-inline: clamp(8px, 2vw, 20px);
+      }
+
+      .quality__inner {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .quality__copy {
+        text-align: right;
+      }
+
+      .quality__title {
+        margin: 0 0 18px;
+        font-weight: 700;
+        font-size: clamp(24px, 2.6vw, 32px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+        text-align: right;
+      }
+
+      .quality__text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+        text-align: right;
+      }
+
+      .quality__controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: clamp(32px, 5vw, 56px);
+        padding-top: 8px;
+      }
+
+      .quality__dots {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .quality__dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: #c8e4f8;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .quality__dot.is-active {
+        background: #1176d9;
+      }
+
+      .quality__nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .quality__arrow {
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        background: #e8f4fc;
+        border: 0;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: background 150ms ease;
+      }
+
+      .quality__arrow:hover {
+        background: #d6ebfa;
+      }
+
+      .quality__arrow--prev::before,
+      .quality__arrow--next::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-color: #1176d9;
+        border-style: solid;
+      }
+
+      .quality__arrow--prev::before {
+        border-width: 2px 0 0 2px;
+        transform: rotate(-45deg);
+        margin-left: 3px;
+      }
+
+      .quality__arrow--next::before {
+        border-width: 2px 2px 0 0;
+        transform: rotate(45deg);
+        margin-right: 3px;
+      }
+
+      @media (max-width: 900px) {
+        .quality__slide {
+          grid-template-columns: 1fr;
+        }
+
+        .quality__media {
+          order: -1;
+        }
+
+        .quality__controls {
+          margin-top: 28px;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.2;
+        min-height: 40px;
+        text-decoration: none;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+        transition: transform 150ms ease, background 150ms ease;
+      }
+
+      .btn--primary {
+        background: #1176d9;
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .btn--primary:hover {
+        background: #0f6ecb;
+        transform: translateY(-1px);
+      }
+
+      .btn--primary:active {
+        transform: translateY(0);
+      }
+
+      .btn--outline {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+      }
+
+      .btn--outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .btn--outline:active {
+        transform: translateY(0);
+      }
+
+      .breakthrough__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .breakthrough__stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: stretch;
+        gap: clamp(16px, 2.4vw, 24px);
+        margin-bottom: clamp(48px, 6vw, 80px);
+      }
+
+      .breakthrough__card {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-height: clamp(180px, 22vw, 240px);
+        aspect-ratio: 1.25 / 1;
+        border-radius: 8px;
+        padding: clamp(24px, 2.5vw, 30px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        text-align: left;
+      }
+
+      .breakthrough__card--lime {
+        background: #d4ec9f;
+      }
+
+      .breakthrough__card--teal {
+        background: #9fe6e1;
+      }
+
+      .breakthrough__card--blue {
+        background: #6bb9e8;
+      }
+
+      .breakthrough__stat {
+        display: block;
+        margin: 0;
+        font-weight: 700;
+        font-size: clamp(32px, 3.5vw, 44px);
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: #2a2a2a;
+      }
+
+      .breakthrough__card-text {
+        margin: auto 0 0;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #4a4a4a;
+      }
+
+      .breakthrough__card-text strong {
+        font-weight: 700;
+        color: #2a2a2a;
+      }
+
+      .breakthrough__spotlight {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        align-items: center;
+        gap: clamp(26px, 4vw, 56px);
+      }
+
+      .breakthrough__kicker {
+        width: 52px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 50%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 14px;
+      }
+
+      .breakthrough__spotlight-title {
+        margin: 0 0 14px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .breakthrough__spotlight-text {
+        margin: 0 0 22px;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+        max-width: 48ch;
+      }
+
+      .breakthrough__media {
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f4f4f4;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .breakthrough__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      @media (max-width: 900px) {
+        .breakthrough__stats {
+          grid-template-columns: 1fr;
+        }
+
+        .breakthrough__card {
+          aspect-ratio: auto;
+          min-height: 170px;
+        }
+
+        .breakthrough__spotlight {
+          grid-template-columns: 1fr;
+        }
+
+        .breakthrough__media {
+          order: -1;
+        }
+      }
+
+      .gather__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #111;
+      }
+
+      .gather__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto 1fr auto auto;
+        align-items: stretch;
+        column-gap: clamp(16px, 2.4vw, 24px);
+        row-gap: 0;
+        min-height: clamp(300px, 36vw, 400px);
+      }
+
+      .gather__card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: 1 / -1;
+        padding: clamp(24px, 3vw, 32px);
+        background-color: #f3fbff;
+        border-radius: 0;
+        box-sizing: border-box;
+      }
+
+      .gather__top {
+        grid-row: 1;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        align-self: start;
+      }
+
+      .gather__number {
+        margin: 0;
+        font-weight: 700;
+        font-size: clamp(40px, 4.5vw, 56px);
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: #4a4a4a;
+      }
+
+      .gather__label {
+        grid-row: 3;
+        align-self: start;
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(18px, 2vw, 22px);
+        line-height: 1.2;
+        color: #111;
+        text-align: left;
+      }
+
+      .gather__text {
+        grid-row: 4;
+        align-self: start;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.65;
+        color: #4a4a4a;
+        text-align: left;
+      }
+
+      @media (max-width: 900px) {
+        .gather__grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: none;
+          min-height: 0;
+        }
+
+        .gather__card {
+          grid-row: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 280px;
+        }
+
+        .gather__label,
+        .gather__text {
+          grid-row: auto;
+        }
+
+        .gather__label {
+          margin-top: auto;
+          padding-top: clamp(16px, 2vw, 24px);
+        }
+      }
+
+      .synergy__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(32px, 5vw, 64px);
+      }
+
+      .synergy__grid > * {
+        min-width: 0;
+      }
+
+      .synergy__copy {
+        text-align: center;
+      }
+
+      .synergy__text {
+        margin: 0 auto 28px;
+        width: 100%;
+        max-width: 460px;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #111;
+        text-align: center;
+      }
+
+      .synergy__actions {
+        display: flex;
+        justify-content: center;
+      }
+
+      .synergy__headline-wrap {
+        overflow: visible;
+        min-width: min-content;
+        text-align: center;
+      }
+
+      .synergy__headline {
+        margin: 0;
+        overflow: visible;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        letter-spacing: -0.01em;
+        line-height: 1.12;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          var(--hero-gradient-end) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        padding-block: 0.06em;
+      }
+
+      .synergy__headline-line {
+        display: block;
+        white-space: nowrap;
+        overflow: visible;
+        padding-inline: 0.04em;
+      }
+
+      @media (max-width: 900px) {
+        .synergy__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .synergy__text {
+          max-width: min(460px, 100%);
+        }
+
+        .synergy__headline {
+          font-size: clamp(28px, 7vw, 48px);
+        }
+      }
+
+      .inclusion-glance__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .inclusion-glance__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: stretch;
+        gap: clamp(12px, 2vw, 20px);
+      }
+
+      .inclusion-glance__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: clamp(300px, 36vw, 400px);
+        padding: clamp(28px, 3vw, 36px) clamp(14px, 1.8vw, 20px);
+        border-radius: 8px;
+        color: #fff;
+        box-sizing: border-box;
+      }
+
+      .inclusion-glance__card--navy {
+        background: #002d88;
+      }
+
+      .inclusion-glance__card--blue {
+        background: #0085d1;
+      }
+
+      .inclusion-glance__card--teal {
+        background: #66d2d1;
+      }
+
+      .inclusion-glance__card--lime {
+        background: #b1e466;
+      }
+
+      .inclusion-glance__stat {
+        margin: 0 0 clamp(18px, 2.5vw, 28px);
+        font-weight: 700;
+        font-size: clamp(36px, 4.2vw, 52px);
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+
+      .inclusion-glance__label {
+        margin: 0 0 clamp(16px, 2vw, 24px);
+        font-weight: 700;
+        font-size: clamp(14px, 1.45vw, 17px);
+        line-height: 1.35;
+      }
+
+      .inclusion-glance__text {
+        margin: auto 0 0;
+        font-size: clamp(12px, 1.2vw, 14px);
+        line-height: 1.6;
+      }
+
+      @media (max-width: 900px) {
+        .inclusion-glance__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .inclusion-glance__card {
+          min-height: 280px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .inclusion-glance__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .voice-journey__heading {
+        margin: 0 0 clamp(40px, 5vw, 64px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #3a3a3a;
+      }
+
+      .voice-journey__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(28px, 4vw, 56px);
+        margin-bottom: clamp(48px, 6vw, 72px);
+      }
+
+      .voice-journey__row:last-child {
+        margin-bottom: 0;
+      }
+
+      .voice-journey__media {
+        min-width: 0;
+      }
+
+      .voice-journey__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+      }
+
+      .voice-journey__text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #111;
+      }
+
+      @media (max-width: 900px) {
+        .voice-journey__row {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .voice-journey__row--media-first .voice-journey__media {
+          order: -1;
+        }
+      }
+
+      .careers-growth__heading {
+        margin: 0 0 20px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #111;
+      }
+
+      .careers-growth__intro {
+        margin: 0 auto clamp(40px, 5vw, 56px);
+        max-width: min(900px, 100%);
+        font-size: 14px;
+        line-height: 1.75;
+        text-align: center;
+        color: #111;
+      }
+
+      .careers-growth__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(20px, 3vw, 32px);
+        margin-bottom: clamp(36px, 4.5vw, 48px);
+      }
+
+      .careers-growth__card {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .careers-growth__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .careers-growth__actions {
+        display: flex;
+        justify-content: center;
+      }
+
+      @media (max-width: 768px) {
+        .careers-growth__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .leadership-quote {
+        background: transparent;
+      }
+
+      .leadership-quote__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+      }
+
+      .join {
+        padding: 0;
+      }
+
+      .join__banner {
+        position: relative;
+        width: 100%;
+        border: 1px solid rgba(200, 220, 240, 0.65);
+        border-radius: 2px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .join__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .join__content {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: normal;
+        padding: clamp(24px, 4.2vw, 44px) clamp(28px, 4.5vw, 52px);
+        max-width: 36rem;
+      }
+
+      .join__title {
+        margin: 0 0 10px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        color: #fff;
+      }
+
+      .join__text {
+        margin: 0;
+        font-size: clamp(14px, 1.4vw, 16px);
+        font-weight: 400;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .join__actions {
+        margin-top: 22px;
+      }
+
+      @media (max-width: 640px) {
+        .join__content {
+          max-width: none;
+          padding: 28px 24px;
+        }
+      }
+
+      .voices {
+        overflow: visible;
+      }
+
+      .voices .container {
+        overflow: visible;
+      }
+
+      .voices__wrap {
+        position: relative;
+        width: 100%;
+        overflow: visible;
+        padding-right: clamp(40px, 5.5vw, 72px);
+      }
+
+      .voices__media {
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f4f4f4;
+      }
+
+      .voices__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 7;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .voices__card {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        right: auto;
+        transform: translateY(-50%);
+        width: min(500px, 52%);
+        background: #fff;
+        border-radius: 8px;
+        padding: clamp(28px, 3.5vw, 40px);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+
+      .voices__kicker {
+        width: 56px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 50%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 16px;
+      }
+
+      .voices__title {
+        margin: 0 0 14px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #111;
+      }
+
+      .voices__text {
+        margin: 0;
+        max-width: 42ch;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+      }
+
+      .voices__actions {
+        margin-top: 22px;
+      }
+
+      @media (max-width: 900px) {
+        .voices__wrap {
+          padding-right: 0;
+        }
+
+        .voices__image {
+          aspect-ratio: 16 / 9;
+        }
+
+        .voices__card {
+          position: static;
+          transform: none;
+          width: 100%;
+          max-width: none;
+          margin-top: 18px;
+          padding: 26px 22px 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" aria-label="Life at Delta">
+      <div class="hero__content">
+        <div class="hero__panel">
+          <h1 class="hero__title">
+            <span class="hero__title-top">Life at Delta:</span>
+            <span class="hero__title-bottom"
+              >Living Our <span class="hero__gradient">Values</span></span
+            >
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <main class="main" aria-label="Values content">
+      <section class="values-intro" aria-label="Built on Values, Powered by People">
+        <div class="container">
+          <h2 class="values-intro__title">Built on Values, Powered by People</h2>
+          <p class="values-intro__text">
+            At Delta, our five core values guide everything we do. From how we work
+            together to how we innovate for a better future. They reflect who we are,
+            what we stand for, and how we drive lasting impact.
+          </p>
+
+          <div class="values-carousel" data-carousel="values">
+            <div class="values-carousel__viewport">
+              <div class="values-carousel__track" data-carousel-track>
+                <article class="values-carousel__slide" data-carousel-slide>
+                  <img
+                    class="values-carousel__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282345082955.png"
+                    alt="Integrity"
+                  />
+                </article>
+                <article class="values-carousel__slide" data-carousel-slide>
+                  <img
+                    class="values-carousel__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290005348113.png"
+                    alt="Innovation"
+                  />
+                </article>
+                <article class="values-carousel__slide" data-carousel-slide>
+                  <img
+                    class="values-carousel__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290006039507.png"
+                    alt="Collaboration"
+                  />
+                </article>
+                <article class="values-carousel__slide" data-carousel-slide>
+                  <img
+                    class="values-carousel__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282347272087.png"
+                    alt="Empowerment"
+                  />
+                </article>
+                <article class="values-carousel__slide" data-carousel-slide>
+                  <img
+                    class="values-carousel__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282347465504.png"
+                    alt="Inclusion"
+                  />
+                </article>
+              </div>
+
+              <button
+                class="values-carousel__arrow values-carousel__arrow--prev"
+                type="button"
+                aria-label="Previous"
+                data-carousel-prev
+              ></button>
+              <button
+                class="values-carousel__arrow values-carousel__arrow--next"
+                type="button"
+                aria-label="Next"
+                data-carousel-next
+              ></button>
+            </div>
+
+            <div
+              class="values-carousel__dots"
+              role="tablist"
+              aria-label="Carousel pagination"
+            >
+              <button
+                class="values-carousel__dot"
+                type="button"
+                aria-label="Go to page 1"
+                data-carousel-dot
+              ></button>
+              <button
+                class="values-carousel__dot"
+                type="button"
+                aria-label="Go to page 2"
+                data-carousel-dot
+              ></button>
+              <button
+                class="values-carousel__dot"
+                type="button"
+                aria-label="Go to page 3"
+                data-carousel-dot
+              ></button>
+              <button
+                class="values-carousel__dot"
+                type="button"
+                aria-label="Go to page 4"
+                data-carousel-dot
+                hidden
+              ></button>
+              <button
+                class="values-carousel__dot"
+                type="button"
+                aria-label="Go to page 5"
+                data-carousel-dot
+                hidden
+              ></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values-integrity" aria-label="Integrity">
+        <div class="values-integrity__banner">
+          <img
+            class="values-integrity__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290016598501.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="values-integrity__content">
+            <div class="container">
+              <div class="values-integrity__copy">
+                <h2 class="values-integrity__title">Integrity</h2>
+                <p class="values-integrity__text">
+                  Honestly dedicated to achieving quality with our work, upholding the
+                  highest level of professional standards and matching our words with
+                  action.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quality" aria-label="Committed to Quality" data-carousel="quality">
+        <div class="container">
+          <div class="quality__viewport">
+            <div class="quality__track" data-quality-track>
+              <article class="quality__slide" data-quality-slide>
+                <div class="quality__media">
+                  <img
+                    class="quality__image"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290031174244.png"
+                    alt="Committed to Quality"
+                  />
+                </div>
+                <div class="quality__side">
+                  <div class="quality__inner">
+                    <div class="quality__copy">
+                      <h2 class="quality__title">Committed to Quality</h2>
+                      <p class="quality__text">
+                        At Delta, we strive for excellence every day. Our dedication to
+                        quality is reflected in everything we do from the smallest task to
+                        the biggest decision.
+                      </p>
+                    </div>
+                    <div class="quality__controls">
+                      <div class="quality__dots" role="tablist" aria-label="Slide pagination">
+                        <button
+                          class="quality__dot is-active"
+                          type="button"
+                          aria-label="Go to slide 1"
+                          data-quality-dot
+                        ></button>
+                        <button
+                          class="quality__dot"
+                          type="button"
+                          aria-label="Go to slide 2"
+                          data-quality-dot
+                        ></button>
+                        <button
+                          class="quality__dot"
+                          type="button"
+                          aria-label="Go to slide 3"
+                          data-quality-dot
+                        ></button>
+                      </div>
+                      <div class="quality__nav">
+                        <button
+                          class="quality__arrow quality__arrow--prev"
+                          type="button"
+                          aria-label="Previous slide"
+                          data-quality-prev
+                        ></button>
+                        <button
+                          class="quality__arrow quality__arrow--next"
+                          type="button"
+                          aria-label="Next slide"
+                          data-quality-next
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="quality__slide" data-quality-slide>
+                <div class="quality__media">
+                  <img
+                    class="quality__image"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290031387586.png"
+                    alt="Upholding the Highest Level of Professional Standards"
+                  />
+                </div>
+                <div class="quality__side">
+                  <div class="quality__inner">
+                    <div class="quality__copy">
+                      <h2 class="quality__title">
+                        Upholding the Highest Level of Professional Standards
+                      </h2>
+                      <p class="quality__text">
+                        At Delta, professionalism is at the heart of how we work. We set
+                        the bar high, delivering with integrity, precision, and respect in
+                        everything we do. Our commitment to excellence drives us to
+                        continuously improve and exceed expectations.
+                      </p>
+                    </div>
+                    <div class="quality__controls" aria-hidden="true">
+                      <div class="quality__dots">
+                        <button class="quality__dot" type="button" data-quality-dot></button>
+                        <button class="quality__dot" type="button" data-quality-dot></button>
+                        <button class="quality__dot" type="button" data-quality-dot></button>
+                      </div>
+                      <div class="quality__nav">
+                        <button class="quality__arrow quality__arrow--prev" type="button" data-quality-prev></button>
+                        <button class="quality__arrow quality__arrow--next" type="button" data-quality-next></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="quality__slide" data-quality-slide>
+                <div class="quality__media">
+                  <img
+                    class="quality__image"
+                    src="https://filecenter.deltaww.com/about/images/about-202605290032008184.png"
+                    alt="Matching Our Words with Action"
+                  />
+                </div>
+                <div class="quality__side">
+                  <div class="quality__inner">
+                    <div class="quality__copy">
+                      <h2 class="quality__title">Matching Our Words with Action</h2>
+                      <p class="quality__text">
+                        At Delta, we believe that true credibility comes from consistency.
+                        We don't just talk about our values, we live them. Through
+                        accountability, teamwork, and dedication, we turn our commitments
+                        into tangible results every day.
+                      </p>
+                    </div>
+                    <div class="quality__controls" aria-hidden="true">
+                      <div class="quality__dots">
+                        <button class="quality__dot" type="button" data-quality-dot></button>
+                        <button class="quality__dot" type="button" data-quality-dot></button>
+                        <button class="quality__dot" type="button" data-quality-dot></button>
+                      </div>
+                      <div class="quality__nav">
+                        <button class="quality__arrow quality__arrow--prev" type="button" data-quality-prev></button>
+                        <button class="quality__arrow quality__arrow--next" type="button" data-quality-next></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values-innovation" aria-label="Innovation">
+        <div class="values-innovation__banner">
+          <img
+            class="values-innovation__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290059563967.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="values-innovation__content">
+            <div class="container">
+              <div class="values-innovation__copy">
+                <h2 class="values-innovation__title">Innovation</h2>
+                <p class="values-innovation__text">
+                  Looking forward to discover future possibilities, embracing continuous
+                  learning to innovate on creative solutions and breaking through the
+                  status quo.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="breakthrough"
+        aria-label="Your Next Idea Can Power Global Breakthrough"
+      >
+        <div class="container">
+          <h2 class="breakthrough__heading">
+            Your Next Idea Can Power Global Breakthrough
+          </h2>
+
+          <div class="breakthrough__stats">
+            <article class="breakthrough__card breakthrough__card--lime">
+              <span class="breakthrough__stat">12,000+</span>
+              <p class="breakthrough__card-text">
+                Collaborate with <strong>over 12,000 engineers</strong> globally
+              </p>
+            </article>
+            <article class="breakthrough__card breakthrough__card--teal">
+              <span class="breakthrough__stat">73</span>
+              <p class="breakthrough__card-text">
+                Innovate across <strong>73 R&amp;D centers</strong> worldwide
+              </p>
+            </article>
+            <article class="breakthrough__card breakthrough__card--blue">
+              <span class="breakthrough__stat">18,000+</span>
+              <p class="breakthrough__card-text">
+                <strong>18,000+ patent certificates</strong> approved by the end of 2024
+              </p>
+            </article>
+          </div>
+
+          <div class="breakthrough__spotlight">
+            <div class="breakthrough__copy">
+              <div class="breakthrough__kicker" aria-hidden="true"></div>
+              <h3 class="breakthrough__spotlight-title">Innovation Spotlights</h3>
+              <p class="breakthrough__spotlight-text">
+                Innovation at Delta extends beyond our offices discover the expert
+                analysis, in-depth articles and real-world case studies shaping the future
+                of energy and sustainability.
+              </p>
+              <a class="btn btn--primary" href="#" role="button">Discover More</a>
+            </div>
+            <div class="breakthrough__media">
+              <img
+                class="breakthrough__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290108189032.png"
+                alt="Delta building"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values-collaboration" aria-label="Collaboration">
+        <div class="values-collaboration__banner">
+          <img
+            class="values-collaboration__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290117215350.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="values-collaboration__content">
+            <div class="container">
+              <div class="values-collaboration__copy">
+                <h2 class="values-collaboration__title">Collaboration</h2>
+                <p class="values-collaboration__text">
+                  Creating synergetic partnerships that achieve shared goals with agility
+                  and precision, putting partners, clients and users at the center of our
+                  collaborative efforts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gather" aria-label="We Gather at Delta, Because We Are">
+        <div class="container">
+          <h2 class="gather__heading">We Gather at Delta, Because We Are</h2>
+
+          <div class="gather__grid">
+            <article class="gather__card">
+              <div class="gather__top">
+                <span class="gather__number">01</span>
+              </div>
+              <h3 class="gather__label">Adaptable</h3>
+              <p class="gather__text">
+                Hands-on problem-solver. We embrace change with flexibility and a
+                practical, solution-oriented mindset.
+              </p>
+            </article>
+
+            <article class="gather__card">
+              <div class="gather__top">
+                <span class="gather__number">02</span>
+              </div>
+              <h3 class="gather__label">Ethical</h3>
+              <p class="gather__text">
+                Responsible professional - We operate with integrity and accountability,
+                anchoring every action in trustworthiness.
+              </p>
+            </article>
+
+            <article class="gather__card">
+              <div class="gather__top">
+                <span class="gather__number">03</span>
+              </div>
+              <h3 class="gather__label">Innovative</h3>
+              <p class="gather__text">
+                We remain open-minded and eager to learn, driving fresh ideas while
+                forging valuable connections.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="synergy" aria-label="Synergy Powers Growth">
+        <div class="container">
+          <div class="synergy__grid">
+            <div class="synergy__copy">
+              <p class="synergy__text">
+                At Delta, we seize every opportunity to work together whether it's
+                teaming up within your own group, bridging departments, or co-creating
+                beyond the office. We believe our greatest breakthroughs happen when
+                diverse minds unite. Hear how our people turn collaboration into impact.
+              </p>
+              <div class="synergy__actions">
+                <a class="btn btn--primary" href="#" role="button">Read our Stories</a>
+              </div>
+            </div>
+
+            <div class="synergy__headline-wrap">
+              <h2 class="synergy__headline">
+                <span class="synergy__headline-line">Synergy Powers</span>
+                <span class="synergy__headline-line">Growth</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="voices" aria-label="Delta Voices">
+        <div class="container">
+          <div class="voices__wrap">
+            <div class="voices__media">
+              <img
+                class="voices__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290146558298.png"
+                alt="Colleagues collaborating at a meeting table"
+              />
+            </div>
+
+            <div class="voices__card">
+              <div class="voices__kicker" aria-hidden="true"></div>
+              <h2 class="voices__title">Delta Voices</h2>
+              <p class="voices__text">
+                From career journeys to innovation stories, Delta Voices offers a
+                glimpse into life at Delta: where our people shape technology,
+                empower progress, and make a difference every day.
+              </p>
+              <div class="voices__actions">
+                <a class="btn btn--primary" href="#" role="button">Read Stories</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values-inclusion" aria-label="Inclusion">
+        <div class="values-inclusion__banner">
+          <img
+            class="values-inclusion__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290154479924.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="values-inclusion__content">
+            <div class="container">
+              <div class="values-inclusion__copy">
+                <h2 class="values-inclusion__title">Inclusion</h2>
+                <p class="values-inclusion__text">
+                  Embracing diverse perspectives and backgrounds to foster a culture of
+                  belonging where every individual is respected, valued, and empowered to
+                  contribute their best.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="inclusion-glance" aria-label="Inclusion at A Glance">
+        <div class="container">
+          <h2 class="inclusion-glance__heading">
+            Living Our Value: Inclusion at A Glance
+          </h2>
+
+          <div class="inclusion-glance__grid">
+            <article class="inclusion-glance__card inclusion-glance__card--navy">
+              <p class="inclusion-glance__stat">50+</p>
+              <h3 class="inclusion-glance__label">Nationalities Represented</h3>
+              <p class="inclusion-glance__text">
+                Our teams are made up of talented individuals from over 50 countries,
+                bringing global perspectives to everything we do.
+              </p>
+            </article>
+
+            <article class="inclusion-glance__card inclusion-glance__card--blue">
+              <p class="inclusion-glance__stat">93%</p>
+              <h3 class="inclusion-glance__label">
+                of Employees Completed Human Right Policy Training
+              </h3>
+              <p class="inclusion-glance__text">
+                We invest in building awareness and fostering an inclusive culture
+                through regular learning and development programs.
+              </p>
+            </article>
+
+            <article class="inclusion-glance__card inclusion-glance__card--teal">
+              <p class="inclusion-glance__stat">85%</p>
+              <h3 class="inclusion-glance__label">
+                of Employees Feel They Can Be Themselves at Work
+              </h3>
+              <p class="inclusion-glance__text">
+                Our inclusive environment empowers people to bring their true selves to
+                work every day, driving innovation and collaboration.
+              </p>
+            </article>
+
+            <article class="inclusion-glance__card inclusion-glance__card--lime">
+              <p class="inclusion-glance__stat">95%</p>
+              <h3 class="inclusion-glance__label">
+                of Our Workspaces Are Accessibility-Friendly
+              </h3>
+              <p class="inclusion-glance__text">
+                We are committed to creating environments where everyone, regardless of
+                ability, can thrive and succeed.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="voice-journey" aria-label="Every Voice Shapes Our Journey">
+        <div class="container">
+          <h2 class="voice-journey__heading">Every Voice Shapes Our Journey</h2>
+
+          <div class="voice-journey__row voice-journey__row--media-first">
+            <div class="voice-journey__media">
+              <img
+                class="voice-journey__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290435386936.png"
+                alt="Delta colleagues collaborating in the workplace"
+              />
+            </div>
+            <div class="voice-journey__copy">
+              <p class="voice-journey__text">
+                Inclusion at Delta means more than diverse numbers it's about co creating
+                an environment where every perspective shapes our future. A culture of
+                diversity, inclusion, and equal opportunity isn't just the right thing to
+                do it's critical to our success and makes us stronger. We strive for a
+                workplace where individual differences aren't just welcomed but celebrated.
+              </p>
+            </div>
+          </div>
+
+          <div class="voice-journey__row">
+            <div class="voice-journey__copy">
+              <p class="voice-journey__text">
+                That's why we invest in inclusive hiring, transparent pay equity,
+                accessible environments, and employee led networks so every colleague can
+                thrive, drive real impact, and help us build a more sustainable future
+                together.
+              </p>
+            </div>
+            <div class="voice-journey__media">
+              <img
+                class="voice-journey__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290435586690.png"
+                alt="Delta team members in inclusive workplace settings"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values-empowerment" aria-label="Empowerment">
+        <div class="values-empowerment__banner">
+          <img
+            class="values-empowerment__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290437500655.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <div class="values-empowerment__content">
+            <div class="container">
+              <div class="values-empowerment__copy">
+                <h2 class="values-empowerment__title">Empowerment</h2>
+                <p class="values-empowerment__text">
+                  Achieving our own success by empowering others to realize their own
+                  goals, encouraging active and enthusiastic growth to fulfill everyone's
+                  potential.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="careers-growth" aria-label="Inside Delta Careers">
+        <div class="container">
+          <h2 class="careers-growth__heading">
+            Inspired to Grow: Inside Delta Careers
+          </h2>
+          <p class="careers-growth__intro">
+            At Delta, growth isn't just a goal it's part of our culture. In this section,
+            our employees share personal stories of development, learning, and opportunity.
+            Discover how careers thrive at Delta, from day one and beyond.
+          </p>
+
+          <div class="careers-growth__grid">
+            <article class="careers-growth__card">
+              <img
+                class="careers-growth__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290445354357.png"
+                alt="From Engineer to Team Leader: My Career Growth at Delta"
+              />
+            </article>
+
+            <article class="careers-growth__card">
+              <img
+                class="careers-growth__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290445547828.png"
+                alt="From Engineer to Team Leader: My Career Growth at Delta"
+              />
+            </article>
+          </div>
+
+          <div class="careers-growth__actions">
+            <a class="btn btn--primary" href="#" role="button">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="leadership-quote" aria-label="Leadership quote">
+        <div class="container">
+          <img
+            class="leadership-quote__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290457406789.png"
+            alt="Dalip Sharma, President and General Manager, Delta Electronics EMEA — Together, we are charting a more sustainable future."
+          />
+        </div>
+      </section>
+
+      <section class="join" aria-label="Join Delta Today">
+        <div class="container">
+          <div class="join__banner">
+            <img
+              class="join__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605282322271103.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="join__content">
+              <h2 class="join__title">Join Delta Today</h2>
+              <p class="join__text">
+                Together, we power a smarter and greener tomorrow.
+              </p>
+              <div class="join__actions">
+                <a class="btn btn--outline" href="#" role="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const root = document.querySelector('[data-carousel="quality"]');
+        if (!root) return;
+
+        const track = root.querySelector("[data-quality-track]");
+        const slides = Array.from(root.querySelectorAll("[data-quality-slide]"));
+        const prevBtns = Array.from(root.querySelectorAll("[data-quality-prev]"));
+        const nextBtns = Array.from(root.querySelectorAll("[data-quality-next]"));
+        const dots = Array.from(root.querySelectorAll("[data-quality-dot]"));
+
+        let index = 0;
+
+        function update() {
+          const slideW = root.querySelector(".quality__viewport")?.clientWidth || 0;
+          track.style.transform = `translateX(${-index * slideW}px)`;
+
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("is-active", i % 3 === index);
+          });
+        }
+
+        function goTo(i) {
+          index = (i + slides.length) % slides.length;
+          update();
+        }
+
+        prevBtns.forEach((btn) => {
+          btn.addEventListener("click", () => goTo(index - 1));
+        });
+
+        nextBtns.forEach((btn) => {
+          btn.addEventListener("click", () => goTo(index + 1));
+        });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => goTo(i % 3));
+        });
+
+        window.addEventListener("resize", () => update());
+        update();
+      })();
+
+      (() => {
+        const root = document.querySelector('[data-carousel="values"]');
+        if (!root) return;
+
+        const track = root.querySelector("[data-carousel-track]");
+        const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
+        const prevBtn = root.querySelector("[data-carousel-prev]");
+        const nextBtn = root.querySelector("[data-carousel-next]");
+        const dots = Array.from(root.querySelectorAll("[data-carousel-dot]"));
+
+        let index = 0;
+        let hasMovedForward = false;
+
+        function slidesPerView() {
+          const w = window.innerWidth;
+          if (w <= 640) return 1;
+          if (w <= 980) return 2;
+          return 3;
+        }
+
+        function maxStart() {
+          return Math.max(0, slides.length - slidesPerView());
+        }
+
+        function clampIndex(i) {
+          return Math.min(Math.max(0, i), maxStart());
+        }
+
+        function update() {
+          index = clampIndex(index);
+          const pages = maxStart() + 1;
+
+          dots.forEach((dot, i) => {
+            const visible = i < pages;
+            dot.hidden = !visible;
+            dot.classList.toggle("is-active", visible && i === index);
+          });
+
+          prevBtn?.classList.toggle("is-visible", hasMovedForward && index > 0);
+
+          const gap = parseFloat(getComputedStyle(track).gap || "0");
+          const slideW = slides[0]?.getBoundingClientRect().width || 0;
+          const x = (slideW + gap) * index;
+          track.style.transform = `translateX(${-x}px)`;
+        }
+
+        prevBtn?.addEventListener("click", () => {
+          index -= 1;
+          if (index < 0) index = 0;
+          update();
+        });
+
+        nextBtn?.addEventListener("click", () => {
+          index += 1;
+          if (index > maxStart()) {
+            index = 0;
+            hasMovedForward = false;
+          } else {
+            hasMovedForward = true;
+          }
+          update();
+        });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => {
+            index = i;
+            hasMovedForward = i > 0;
+            update();
+          });
+        });
+
+        window.addEventListener("resize", () => update());
+        update();
+      })();
+    </script>
+  </body>
+</html>

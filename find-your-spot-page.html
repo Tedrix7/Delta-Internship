@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Your Spot Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --hero-gradient-start: #0087dc;
+        --hero-gradient-end: #b9eb5f;
+        --section-gap: 120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .hero {
+        min-height: 100vh;
+        width: 100%;
+        display: grid;
+        align-items: end;
+        background-image: url("https://filecenter.deltaww.com/about/images/about-202605290646240956.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      .hero__content {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding: clamp(28px, 4.5vw, 56px);
+        padding-bottom: clamp(34px, 5.2vw, 66px);
+        text-align: left;
+      }
+
+      .hero__panel {
+        display: inline-block;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+        position: relative;
+      }
+
+      .hero__panel::before {
+        content: "";
+        position: absolute;
+        inset: -22px -34px -18px -34px;
+        background: radial-gradient(
+          120% 120% at 30% 60%,
+          rgba(0, 72, 118, 0.72) 0%,
+          rgba(0, 72, 118, 0.28) 38%,
+          rgba(0, 72, 118, 0) 72%
+        );
+        filter: blur(18px);
+        opacity: 0.95;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero__title {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero__title-top {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+      }
+
+      .hero__title-bottom {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+        margin-top: 0.08em;
+      }
+
+      .hero__gradient {
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          var(--hero-gradient-end) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+      }
+
+      @media (max-width: 520px) {
+        .hero__content {
+          padding-left: 22px;
+          padding-right: 22px;
+        }
+      }
+
+      .main {
+        background: #fff;
+        color: #111;
+        padding-block: var(--section-gap);
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-gap: 80px;
+        }
+      }
+
+      .container {
+        width: min(1040px, 92vw);
+        max-width: 100%;
+        margin-inline: auto;
+        padding-inline: 0;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.2;
+        min-height: 40px;
+        text-decoration: none;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+        transition: transform 150ms ease, background 150ms ease;
+      }
+
+      .btn--primary {
+        background: #1176d9;
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .btn--primary:hover {
+        background: #0f6ecb;
+        transform: translateY(-1px);
+      }
+
+      .btn--primary:active {
+        transform: translateY(0);
+      }
+
+      .btn--outline {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+      }
+
+      .btn--outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .btn--outline:active {
+        transform: translateY(0);
+      }
+
+      .spot {
+        padding: 0;
+      }
+
+      .spot__carousel {
+        position: relative;
+      }
+
+      .spot__viewport {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .spot__track {
+        display: flex;
+        gap: clamp(18px, 2.6vw, 34px);
+        align-items: stretch;
+        transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+
+      .spot__slide {
+        flex: 0 0 calc((100% - (2 * clamp(18px, 2.6vw, 34px))) / 3);
+        border-radius: 0;
+        overflow: hidden;
+        position: relative;
+        background: transparent;
+        transform: none;
+        opacity: 1;
+        transition: none;
+      }
+
+      .spot__img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      .spot__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+
+      .spot__arrow--next {
+        right: 10px;
+      }
+
+      .spot__arrow--prev {
+        left: 10px;
+      }
+
+      .spot__arrow--next::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #111;
+        border-bottom: 2px solid #111;
+        transform: rotate(-45deg);
+        margin-left: -2px;
+      }
+
+      .spot__arrow--prev::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid #111;
+        border-top: 2px solid #111;
+        transform: rotate(-45deg);
+        margin-left: 2px;
+      }
+
+      .spot__dots {
+        margin-top: 18px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .spot__dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: rgba(17, 17, 17, 0.18);
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .spot__dot.is-active {
+        background: #1176d9;
+      }
+
+      .spot__cta {
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+      }
+
+      @media (max-width: 980px) {
+        .spot__slide {
+          flex-basis: calc((100% - clamp(18px, 2.6vw, 34px)) / 2);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .spot__slide {
+          flex-basis: 100%;
+        }
+
+        .spot__arrow--next {
+          right: 10px;
+        }
+
+        .spot__arrow--prev {
+          left: 10px;
+        }
+      }
+
+      .global-ops {
+        padding: 0;
+        width: 100%;
+        overflow: visible;
+      }
+
+      .global-ops .container {
+        overflow: visible;
+      }
+
+      .global-ops__wrap {
+        position: relative;
+        width: 100%;
+        padding-right: clamp(24px, 5vw, 52px);
+      }
+
+      .global-ops__media {
+        line-height: 0;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .global-ops__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 580 / 360;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 6px;
+      }
+
+      .global-ops__card {
+        position: absolute;
+        top: 50%;
+        left: 60%;
+        transform: translateY(-50%);
+        width: min(400px, 50%);
+        background: #fff;
+        padding: clamp(28px, 3.5vw, 40px) clamp(28px, 3.5vw, 44px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+      }
+
+      .global-ops__kicker {
+        width: 52px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 14px;
+      }
+
+      .global-ops__title {
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .global-ops__text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+      }
+
+      .global-ops__actions {
+        margin-top: 22px;
+      }
+
+      @media (max-width: 900px) {
+        .global-ops__wrap {
+          padding-right: 0;
+        }
+
+        .global-ops__card {
+          position: relative;
+          top: auto;
+          left: auto;
+          transform: none;
+          width: 100%;
+          max-width: none;
+          margin-top: clamp(20px, 4vw, 28px);
+        }
+      }
+
+      .hiring-process {
+        padding: 0;
+      }
+
+      .hiring-process__header {
+        text-align: center;
+        margin-bottom: clamp(36px, 5vw, 52px);
+      }
+
+      .hiring-process__title {
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .hiring-process__intro {
+        margin: 0;
+        font-size: clamp(14px, 1.45vw, 16px);
+        line-height: 1.65;
+        color: #6a6a6a;
+      }
+
+      .hiring-process__media {
+        line-height: 0;
+      }
+
+      .hiring-process__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .career-expo {
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .career-expo__image {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .intern-stories {
+        padding: 0;
+      }
+
+      .intern-stories__header {
+        text-align: center;
+        margin-bottom: clamp(36px, 5vw, 52px);
+      }
+
+      .intern-stories__title {
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .intern-stories__intro {
+        margin: 0 auto;
+        max-width: 52rem;
+        font-size: clamp(14px, 1.45vw, 16px);
+        line-height: 1.65;
+        color: #6a6a6a;
+      }
+
+      .intern-stories__rows {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(48px, 7vw, 80px);
+      }
+
+      .intern-stories__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(26px, 4vw, 56px);
+      }
+
+      .intern-stories__media {
+        border-radius: 6px;
+        overflow: hidden;
+        line-height: 0;
+        background: #f4f4f4;
+      }
+
+      .intern-stories__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .intern-stories__copy {
+        min-width: 0;
+      }
+
+      .intern-stories__kicker {
+        width: 52px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 50%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 14px;
+      }
+
+      .intern-stories__name {
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(22px, 2.2vw, 28px);
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        color: #3a3a3a;
+      }
+
+      .intern-stories__quote {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+      }
+
+      .intern-stories__actions {
+        margin-top: 18px;
+      }
+
+      @media (max-width: 900px) {
+        .intern-stories__row {
+          grid-template-columns: 1fr;
+        }
+
+        .intern-stories__row--reverse .intern-stories__media {
+          order: -1;
+        }
+      }
+
+      .embark-internship {
+        padding: 0;
+      }
+
+      .embark-internship__title {
+        margin: 0 0 clamp(28px, 4vw, 40px);
+        text-align: center;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #3a3a3a;
+      }
+
+      .embark-internship__media {
+        line-height: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .embark-internship__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .join {
+        padding: 0;
+      }
+
+      .join__banner {
+        position: relative;
+        width: 100%;
+        border: 1px solid rgba(200, 220, 240, 0.65);
+        border-radius: 2px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .join__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .join__content {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: normal;
+        padding: clamp(24px, 4.2vw, 44px) clamp(28px, 4.5vw, 52px);
+        max-width: 36rem;
+      }
+
+      .join__title {
+        margin: 0 0 10px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        color: #fff;
+      }
+
+      .join__text {
+        margin: 0;
+        font-size: clamp(14px, 1.4vw, 16px);
+        font-weight: 400;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .join__actions {
+        margin-top: 22px;
+      }
+
+      @media (max-width: 640px) {
+        .join__content {
+          max-width: none;
+          padding: 28px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" aria-label="Join Delta for A Smarter and Greener Tomorrow">
+      <div class="hero__content">
+        <div class="hero__panel">
+          <h1 class="hero__title">
+            <span class="hero__title-top">Join Delta for</span>
+            <span class="hero__title-bottom"
+              ><span class="hero__gradient">A Smarter and Greener</span>
+              Tomorrow</span
+            >
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <main class="main" aria-label="Find Your Spot content">
+      <section class="spot" aria-label="Find Your Spot">
+        <div class="container">
+          <div class="spot__carousel" data-carousel="spot">
+            <div class="spot__viewport">
+              <div class="spot__track" data-carousel-track>
+                <article class="spot__slide" data-carousel-slide>
+                  <img
+                    class="spot__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282225155358.png"
+                    alt="Engineering"
+                  />
+                </article>
+                <article class="spot__slide" data-carousel-slide>
+                  <img
+                    class="spot__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282225546662.png"
+                    alt="HR"
+                  />
+                </article>
+                <article class="spot__slide" data-carousel-slide>
+                  <img
+                    class="spot__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282226209311.png"
+                    alt="Marketing"
+                  />
+                </article>
+                <article class="spot__slide" data-carousel-slide>
+                  <img
+                    class="spot__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282228355912.png"
+                    alt="Legal"
+                  />
+                </article>
+                <article class="spot__slide" data-carousel-slide>
+                  <img
+                    class="spot__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282228592884.png"
+                    alt="Sales"
+                  />
+                </article>
+                <article class="spot__slide" data-carousel-slide>
+                  <img
+                    class="spot__img"
+                    src="https://filecenter.deltaww.com/about/images/about-202605282229299752.png"
+                    alt="Service"
+                  />
+                </article>
+              </div>
+
+              <button
+                class="spot__arrow spot__arrow--prev"
+                type="button"
+                aria-label="Previous"
+                data-carousel-prev
+              ></button>
+              <button
+                class="spot__arrow spot__arrow--next"
+                type="button"
+                aria-label="Next"
+                data-carousel-next
+              ></button>
+            </div>
+
+            <div class="spot__dots" role="tablist" aria-label="Carousel pagination">
+              <button class="spot__dot" type="button" aria-label="Go to slide 1" data-carousel-dot></button>
+              <button class="spot__dot" type="button" aria-label="Go to slide 2" data-carousel-dot></button>
+              <button class="spot__dot" type="button" aria-label="Go to slide 3" data-carousel-dot></button>
+              <button class="spot__dot" type="button" aria-label="Go to slide 4" data-carousel-dot></button>
+              <button class="spot__dot" type="button" aria-label="Go to slide 5" data-carousel-dot></button>
+              <button class="spot__dot" type="button" aria-label="Go to slide 6" data-carousel-dot></button>
+            </div>
+
+            <div class="spot__cta">
+              <a class="btn btn--primary" href="#" role="button">Discover More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="global-ops" aria-label="Global Operations">
+        <div class="container">
+          <div class="global-ops__wrap">
+            <div class="global-ops__media">
+              <img
+                class="global-ops__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290650131123.png"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
+            <div class="global-ops__card">
+              <div class="global-ops__kicker" aria-hidden="true"></div>
+              <h2 class="global-ops__title">Global Operations</h2>
+              <p class="global-ops__text">
+                Delta's global network of 165 sales offices, 55 manufacturing sites,
+                and 73 R&amp;D centers supports customers worldwide.
+              </p>
+              <div class="global-ops__actions">
+                <a class="btn btn--primary" href="#" role="button">Discover More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="hiring-process" aria-label="Your Guide to The Hiring Process">
+        <div class="container">
+          <header class="hiring-process__header">
+            <h2 class="hiring-process__title">Your Guide to The Hiring Process</h2>
+            <p class="hiring-process__intro">
+              Everything you need to know about what happens after you apply.
+            </p>
+          </header>
+
+          <div class="hiring-process__media">
+            <img
+              class="hiring-process__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605290657240811.png"
+              alt="Your Guide to The Hiring Process — Application Submission, Initial Screening, Interviews and Assessments, Offer and Onboarding"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="career-expo" aria-label="Career Expo">
+        <img
+          class="career-expo__image"
+          src="https://filecenter.deltaww.com/about/images/about-202605290702179628.png"
+          alt="Career Expo event with Delta team members"
+        />
+      </section>
+
+      <section class="intern-stories" aria-label="Start from Here: Delta Internship Stories">
+        <div class="container">
+          <header class="intern-stories__header">
+            <h2 class="intern-stories__title">
+              Start from Here: Delta Internship Stories
+            </h2>
+            <p class="intern-stories__intro">
+              Curious about life as a Delta intern? Hear firsthand from our interns
+              as they share their experiences, challenges, and the impact they made
+              and how it all began right here.
+            </p>
+          </header>
+
+          <div class="intern-stories__rows">
+            <article class="intern-stories__row">
+              <div class="intern-stories__media">
+                <img
+                  class="intern-stories__image"
+                  src="https://filecenter.deltaww.com/about/images/about-202605290705151222.png"
+                  alt="Tom at a Delta electric vehicle charging station"
+                />
+              </div>
+              <div class="intern-stories__copy">
+                <div class="intern-stories__kicker" aria-hidden="true"></div>
+                <h3 class="intern-stories__name">Tom: My Internship at Delta</h3>
+                <p class="intern-stories__quote">
+                  "My experience at Delta was truly hands-on. I collaborated with
+                  international colleagues, explored new technologies, and saw how my
+                  work could contribute to meaningful change in the energy transition."
+                </p>
+                <div class="intern-stories__actions">
+                  <a class="btn btn--primary" href="#" role="button">Learn More</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="intern-stories__row intern-stories__row--reverse">
+              <div class="intern-stories__copy">
+                <div class="intern-stories__kicker" aria-hidden="true"></div>
+                <h3 class="intern-stories__name">Lorena: My Internship at Delta</h3>
+                <p class="intern-stories__quote">
+                  "Joining Delta gave me the opportunity to work on real projects from
+                  day one. I learned how innovation and sustainability come together
+                  in practice and grew both professionally and personally through
+                  mentorship and teamwork."
+                </p>
+                <div class="intern-stories__actions">
+                  <a class="btn btn--primary" href="#" role="button">Learn More</a>
+                </div>
+              </div>
+              <div class="intern-stories__media">
+                <img
+                  class="intern-stories__image"
+                  src="https://filecenter.deltaww.com/about/images/about-202605290705587135.png"
+                  alt="Lorena and fellow Delta interns holding certificates"
+                />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="embark-internship" aria-label="Embark Your Internship">
+        <div class="container">
+          <h2 class="embark-internship__title">Embark Your Internship</h2>
+          <div class="embark-internship__media">
+            <img
+              class="embark-internship__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605290708551088.png"
+              alt="Delta interns collaborating around a laptop"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="join" aria-label="Join Delta Today">
+        <div class="container">
+          <div class="join__banner">
+            <img
+              class="join__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605282322271103.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="join__content">
+              <h2 class="join__title">Join Delta Today</h2>
+              <p class="join__text">
+                Together, we power a smarter and greener tomorrow.
+              </p>
+              <div class="join__actions">
+                <a class="btn btn--outline" href="#" role="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const root = document.querySelector('[data-carousel="spot"]');
+        if (!root) return;
+
+        const track = root.querySelector("[data-carousel-track]");
+        const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
+        const prevBtn = root.querySelector("[data-carousel-prev]");
+        const nextBtn = root.querySelector("[data-carousel-next]");
+        const dots = Array.from(root.querySelectorAll("[data-carousel-dot]"));
+
+        let index = 1;
+
+        function slidesPerView() {
+          const w = window.innerWidth;
+          if (w <= 640) return 1;
+          if (w <= 980) return 2;
+          return 3;
+        }
+
+        function clampIndex(i) {
+          const spv = slidesPerView();
+          const maxStart = Math.max(0, slides.length - spv);
+          return Math.min(Math.max(0, i), maxStart);
+        }
+
+        function update() {
+          index = clampIndex(index);
+          const spv = slidesPerView();
+          const active = index + Math.floor(spv / 2);
+
+          dots.forEach((d, i) => d.classList.toggle("is-active", i === active));
+
+          const gap = parseFloat(getComputedStyle(track).gap || "0");
+          const slideW = slides[0]?.getBoundingClientRect().width || 0;
+          const x = (slideW + gap) * index;
+          track.style.transform = `translateX(${-x}px)`;
+        }
+
+        function goToActive(activeIndex) {
+          const spv = slidesPerView();
+          const start = activeIndex - Math.floor(spv / 2);
+          index = start;
+          update();
+        }
+
+        nextBtn?.addEventListener("click", () => {
+          index += 1;
+          if (index > slides.length - slidesPerView()) index = 0;
+          update();
+        });
+
+        prevBtn?.addEventListener("click", () => {
+          index -= 1;
+          if (index < 0) index = Math.max(0, slides.length - slidesPerView());
+          update();
+        });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => goToActive(i));
+        });
+
+        window.addEventListener("resize", () => update());
+        update();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Growth Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --hero-gradient-start: #0087dc;
+        --hero-gradient-end: #b9eb5f;
+        --section-gap: 120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: #000;
+        color: #fff;
+      }
+
+      .hero {
+        min-height: 100vh;
+        width: 100%;
+        display: grid;
+        align-items: end;
+        background-image: url("https://filecenter.deltaww.com/about/images/about-202605290716058758.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+      }
+
+      .hero__content {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding: clamp(28px, 4.5vw, 56px);
+        padding-bottom: clamp(34px, 5.2vw, 66px);
+        text-align: left;
+      }
+
+      .hero__panel {
+        display: inline-block;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+        position: relative;
+      }
+
+      .hero__panel::before {
+        content: "";
+        position: absolute;
+        inset: -22px -80px -18px -34px;
+        background: radial-gradient(
+          120% 120% at 30% 60%,
+          rgba(0, 72, 118, 0.72) 0%,
+          rgba(0, 72, 118, 0.28) 38%,
+          rgba(0, 72, 118, 0) 72%
+        );
+        filter: blur(18px);
+        opacity: 0.95;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero__title {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero__title-top {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+      }
+
+      .hero__title-bottom {
+        display: block;
+        font-weight: 700;
+        font-size: clamp(34px, 5.2vw, 64px);
+        color: #fff;
+        margin-top: 0;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 640px) {
+        .hero__title-bottom {
+          white-space: normal;
+        }
+      }
+
+      .hero__gradient {
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          var(--hero-gradient-end) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+      }
+
+      @media (max-width: 520px) {
+        .hero__content {
+          padding-left: 22px;
+          padding-right: 22px;
+        }
+      }
+
+      .main {
+        background: #fff;
+        color: #111;
+        padding-block: var(--section-gap);
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap);
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --section-gap: 80px;
+        }
+      }
+
+      .container {
+        width: min(1040px, 92vw);
+        max-width: 100%;
+        margin-inline: auto;
+        padding-inline: 0;
+      }
+
+      .growth-priority__heading {
+        margin: 0 0 20px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #111;
+      }
+
+      .growth-priority__intro {
+        margin: 0 auto clamp(40px, 5vw, 56px);
+        max-width: min(900px, 100%);
+        font-size: 14px;
+        line-height: 1.75;
+        text-align: center;
+        color: #111;
+      }
+
+      .growth-priority__cards {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .growth-priority__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .empowerment-action__heading {
+        margin: 0 0 clamp(32px, 4vw, 48px);
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        text-align: center;
+        color: #111;
+      }
+
+      .empowerment-action__grid {
+        display: grid;
+        grid-template-columns: 1.08fr 1fr;
+        align-items: start;
+        gap: clamp(26px, 4vw, 56px);
+      }
+
+      .empowerment-action__media {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+        background: #f4f4f4;
+      }
+
+      .empowerment-action__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .empowerment-action__list {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .empowerment-action__item {
+        border-top: 1px solid #d8d8d8;
+      }
+
+      .empowerment-action__item:last-child {
+        border-bottom: 1px solid #d8d8d8;
+      }
+
+      .empowerment-action__trigger {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: clamp(16px, 2.2vw, 22px) 0;
+        border: none;
+        background: transparent;
+        font: inherit;
+        color: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .empowerment-action__badge {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 52%,
+          var(--hero-gradient-end) 100%
+        );
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1;
+        color: #fff;
+      }
+
+      .empowerment-action__label {
+        flex: 1;
+        font-weight: 700;
+        font-size: clamp(16px, 1.8vw, 18px);
+        line-height: 1.2;
+        color: #111;
+      }
+
+      .empowerment-action__icon {
+        flex-shrink: 0;
+        position: relative;
+        width: 18px;
+        height: 18px;
+      }
+
+      .empowerment-action__icon::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 9px;
+        height: 9px;
+        border-top: 1.5px solid #111;
+        border-right: 1.5px solid #111;
+        transform: translate(-65%, -35%) rotate(-45deg);
+        transition: transform 180ms ease;
+      }
+
+      .empowerment-action__item.is-active .empowerment-action__icon::before {
+        transform: translate(-35%, -65%) rotate(135deg);
+      }
+
+      .empowerment-action__panel {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 240ms ease, opacity 200ms ease;
+      }
+
+      .empowerment-action__item.is-active .empowerment-action__panel {
+        max-height: 240px;
+        opacity: 1;
+      }
+
+      .empowerment-action__text {
+        margin: 0 0 clamp(16px, 2.2vw, 22px);
+        padding-left: 48px;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #111;
+      }
+
+      .empowerment-action__text strong {
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .empowerment-action__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .empowerment-action__media {
+          order: -1;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.2;
+        min-height: 40px;
+        text-decoration: none;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+        transition: transform 150ms ease, background 150ms ease;
+      }
+
+      .btn--primary {
+        background: #1176d9;
+        color: #fff;
+        border-color: transparent;
+      }
+
+      .btn--primary:hover {
+        background: #0f6ecb;
+        transform: translateY(-1px);
+      }
+
+      .btn--primary:active {
+        transform: translateY(0);
+      }
+
+      .btn--outline {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.92);
+      }
+
+      .btn--outline:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .btn--outline:active {
+        transform: translateY(0);
+      }
+
+      .inside-careers__header {
+        text-align: center;
+        margin-bottom: clamp(36px, 5vw, 52px);
+      }
+
+      .inside-careers__heading {
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+        color: #111;
+      }
+
+      .inside-careers__intro {
+        margin: 0 auto;
+        max-width: min(900px, 100%);
+        font-size: 14px;
+        line-height: 1.75;
+        color: #111;
+      }
+
+      .inside-careers__rows {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(48px, 7vw, 80px);
+      }
+
+      .inside-careers__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(26px, 4vw, 56px);
+      }
+
+      .inside-careers__media {
+        border-radius: 12px;
+        overflow: hidden;
+        line-height: 0;
+        background: #f4f4f4;
+      }
+
+      .inside-careers__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .inside-careers__copy {
+        min-width: 0;
+      }
+
+      .inside-careers__kicker {
+        width: 52px;
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--hero-gradient-start) 0%,
+          #4ec4c4 50%,
+          var(--hero-gradient-end) 100%
+        );
+        margin: 0 0 14px;
+      }
+
+      .inside-careers__title {
+        margin: 0 0 12px;
+        font-weight: 700;
+        font-size: clamp(22px, 2.2vw, 28px);
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        color: #3a3a3a;
+      }
+
+      .inside-careers__text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.75;
+        color: #6a6a6a;
+      }
+
+      .inside-careers__actions {
+        margin-top: 18px;
+      }
+
+      @media (max-width: 900px) {
+        .inside-careers__row {
+          grid-template-columns: 1fr;
+        }
+
+        .inside-careers__row--reverse .inside-careers__media {
+          order: -1;
+        }
+      }
+
+      .leadership-quote {
+        background: transparent;
+      }
+
+      .leadership-quote__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+      }
+
+      .join {
+        padding: 0;
+      }
+
+      .join__banner {
+        position: relative;
+        width: 100%;
+        border: 1px solid rgba(200, 220, 240, 0.65);
+        border-radius: 2px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .join__image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .join__content {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: normal;
+        padding: clamp(24px, 4.2vw, 44px) clamp(28px, 4.5vw, 52px);
+        max-width: 36rem;
+      }
+
+      .join__title {
+        margin: 0 0 10px;
+        font-weight: 700;
+        font-size: clamp(26px, 2.8vw, 34px);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        color: #fff;
+      }
+
+      .join__text {
+        margin: 0;
+        font-size: clamp(14px, 1.4vw, 16px);
+        font-weight: 400;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .join__actions {
+        margin-top: 22px;
+      }
+
+      @media (max-width: 640px) {
+        .join__content {
+          max-width: none;
+          padding: 28px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero" aria-label="Grow Your Career at Delta">
+      <div class="hero__content">
+        <div class="hero__panel">
+          <h1 class="hero__title">
+            <span class="hero__title-bottom"
+              ><span class="hero__gradient">Grow Your Career</span> at Delta</span
+            >
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <main class="main" aria-label="Growth content">
+      <section class="growth-priority" aria-label="At Delta, Your Growth Is Our Priority">
+        <div class="container">
+          <h2 class="growth-priority__heading">
+            At Delta, Your Growth Is Our Priority
+          </h2>
+          <p class="growth-priority__intro">
+            We empower you with training, mentorship, and global opportunities to help
+            you develop your skills, achieve your goals, and shape a successful,
+            rewarding career.
+          </p>
+
+          <div class="growth-priority__cards">
+            <img
+              class="growth-priority__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605290721515103.png"
+              alt="Global Opportunities, Internal Career Mobility, and Career Development Programs at Delta"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="empowerment-action" aria-label="Empowerment in Action" data-accordion>
+        <div class="container">
+          <h2 class="empowerment-action__heading">Empowerment in Action</h2>
+
+          <div class="empowerment-action__grid">
+            <div class="empowerment-action__media">
+              <img
+                class="empowerment-action__image"
+                src="https://filecenter.deltaww.com/about/images/about-202605290728476421.png"
+                alt="Delta employee soldering an electronic component in a lab"
+              />
+            </div>
+
+            <div class="empowerment-action__list">
+              <article class="empowerment-action__item is-active">
+                <button
+                  class="empowerment-action__trigger"
+                  type="button"
+                  aria-expanded="true"
+                  data-accordion-trigger
+                >
+                  <span class="empowerment-action__badge">1</span>
+                  <span class="empowerment-action__label">Growth</span>
+                  <span class="empowerment-action__icon" aria-hidden="true"></span>
+                </button>
+                <div class="empowerment-action__panel" data-accordion-panel>
+                  <p class="empowerment-action__text">
+                    Discover a <strong>mountain</strong> of opportunity. Every career with
+                    Delta is an adventure. Embark on yours now and start planning your own
+                    pathway to success. Symbolizes breathtaking landscapes and the spirit of
+                    self-challenge.
+                  </p>
+                </div>
+              </article>
+
+              <article class="empowerment-action__item">
+                <button
+                  class="empowerment-action__trigger"
+                  type="button"
+                  aria-expanded="false"
+                  data-accordion-trigger
+                >
+                  <span class="empowerment-action__badge">2</span>
+                  <span class="empowerment-action__label">Innovation</span>
+                  <span class="empowerment-action__icon" aria-hidden="true"></span>
+                </button>
+                <div class="empowerment-action__panel" data-accordion-panel>
+                  <p class="empowerment-action__text">
+                    Discover a <strong>mountain</strong> of opportunity. Every career with
+                    Delta is an adventure. Embark on yours now and start planning your own
+                    pathway to success. Symbolizes breathtaking landscapes and the spirit of
+                    self-challenge.
+                  </p>
+                </div>
+              </article>
+
+              <article class="empowerment-action__item">
+                <button
+                  class="empowerment-action__trigger"
+                  type="button"
+                  aria-expanded="false"
+                  data-accordion-trigger
+                >
+                  <span class="empowerment-action__badge">3</span>
+                  <span class="empowerment-action__label">Impact</span>
+                  <span class="empowerment-action__icon" aria-hidden="true"></span>
+                </button>
+                <div class="empowerment-action__panel" data-accordion-panel>
+                  <p class="empowerment-action__text">
+                    Discover a <strong>mountain</strong> of opportunity. Every career with
+                    Delta is an adventure. Embark on yours now and start planning your own
+                    pathway to success. Symbolizes breathtaking landscapes and the spirit of
+                    self-challenge.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="inside-careers" aria-label="Motivated to Grow: Inside Delta Careers">
+        <div class="container">
+          <header class="inside-careers__header">
+            <h2 class="inside-careers__heading">
+              Motivated to Grow: Inside Delta Careers
+            </h2>
+            <p class="inside-careers__intro">
+              At Delta, growth isn't just a goal it's part of our culture. In this section,
+              our employees share personal stories of development, learning, and opportunity.
+              Discover how careers thrive at Delta, from day one and beyond.
+            </p>
+          </header>
+
+          <div class="inside-careers__rows">
+            <article class="inside-careers__row">
+              <div class="inside-careers__media">
+                <img
+                  class="inside-careers__image"
+                  src="https://filecenter.deltaww.com/about/images/about-202605290733225069.png"
+                  alt="Delta employee working on an electronic assembly"
+                />
+              </div>
+              <div class="inside-careers__copy">
+                <div class="inside-careers__kicker" aria-hidden="true"></div>
+                <h3 class="inside-careers__title">
+                  From Engineer to Team Leader: My Career Growth at Delta
+                </h3>
+                <p class="inside-careers__text">
+                  Delta gave me the tools, support, and opportunities to grow from an
+                  engineer into a confident team leader.
+                </p>
+                <div class="inside-careers__actions">
+                  <a class="btn btn--primary" href="#" role="button">Learn More</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="inside-careers__row inside-careers__row--reverse">
+              <div class="inside-careers__copy">
+                <div class="inside-careers__kicker" aria-hidden="true"></div>
+                <h3 class="inside-careers__title">
+                  How Delta Helped Me Turn Passion into Profession
+                </h3>
+                <p class="inside-careers__text">
+                  At Delta, I transformed my passion for innovation into a rewarding,
+                  meaningful career through real projects and mentorship.
+                </p>
+                <div class="inside-careers__actions">
+                  <a class="btn btn--primary" href="#" role="button">Learn More</a>
+                </div>
+              </div>
+              <div class="inside-careers__media">
+                <img
+                  class="inside-careers__image"
+                  src="https://filecenter.deltaww.com/about/images/about-202605290733431152.png"
+                  alt="Delta technician testing equipment in a lab"
+                />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="leadership-quote" aria-label="Leadership quote">
+        <div class="container">
+          <img
+            class="leadership-quote__image"
+            src="https://filecenter.deltaww.com/about/images/about-202605290735386763.png"
+            alt="Sam Huang, Head of HR Delta Electronics EMEA — We believe in empowering our people to live well, work smart, and grow with purpose."
+          />
+        </div>
+      </section>
+
+      <section class="join" aria-label="Join Delta Today">
+        <div class="container">
+          <div class="join__banner">
+            <img
+              class="join__image"
+              src="https://filecenter.deltaww.com/about/images/about-202605282322271103.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <div class="join__content">
+              <h2 class="join__title">Join Delta Today</h2>
+              <p class="join__text">
+                Together, we power a smarter and greener tomorrow.
+              </p>
+              <div class="join__actions">
+                <a class="btn btn--outline" href="#" role="button">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const root = document.querySelector("[data-accordion]");
+        if (!root) return;
+
+        const items = Array.from(root.querySelectorAll(".empowerment-action__item"));
+
+        items.forEach((item) => {
+          const trigger = item.querySelector("[data-accordion-trigger]");
+
+          trigger?.addEventListener("click", () => {
+            if (item.classList.contains("is-active")) return;
+
+            items.forEach((other) => {
+              const otherTrigger = other.querySelector("[data-accordion-trigger]");
+              const active = other === item;
+
+              other.classList.toggle("is-active", active);
+              otherTrigger?.setAttribute("aria-expanded", active ? "true" : "false");
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
